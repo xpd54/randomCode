@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const store = require("./route/storeRoute")
 const user = require("./route/userRoute")
-const mongoURL = 'mongodb://localhost:27017'
+const mongoURL = 'mongodb://0.0.0.0:27017'
 app = express()
 app.use(express.json())
 app.use("/store", store)
