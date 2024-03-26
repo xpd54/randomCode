@@ -1,0 +1,5 @@
+const {spawnSync} = require('child_process')
+const lsProcess = spawnSync('sl', {cwd: '../'})
+console.log(lsProcess.output.toString('utf8'))
+console.log(lsProcess.status)
+console.log("i am here")
