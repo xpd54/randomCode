@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const store = require("./route/storeRoute")
 const user = require("./route/userRoute")
 const axios = require("axios")
-const mongoURL = 'mongodb://localhost:27017'
+const mongoURL = 'mongodb://mongo:27017'
 const rootURL = "https://httpbin.org/"
 app = express()
 app.use(express.json())

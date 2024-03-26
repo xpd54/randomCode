@@ -2,7 +2,7 @@ version: "3"
 services:
        sells:
            container_name: sells
-           image: sells
+           image: sells:1
            restart: always
            build: .
            ports:
