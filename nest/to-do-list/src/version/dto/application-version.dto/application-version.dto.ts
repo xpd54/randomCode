@@ -1,4 +1,6 @@
 export class ApplicationVersionDto {
-    version: number;
-    time_stamp: Date;
+  version: number;
+  major: number;
+  minor: number;
+  time_stamp: Date;
 }
