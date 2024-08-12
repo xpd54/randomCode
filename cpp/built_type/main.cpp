@@ -31,17 +31,11 @@ void stringLiteral() {
             << "that spans two lines" << std::endl;
 }
 
-std::string global_str;
-int global_int;
+int global_int = 42;
 
 int main() {
-  int local_int;
-  int local;
-  std::string local_str;
-  std::cout << global_int << "\n";
-  std::cout << global_str << "\n";
-  std::cout << local_int << "\n";
-  std::cout << local_str << "\n";
-  std::cout << local << "\n";
+  int global_int = 100;
+  int j = global_int;
+  std::cout << j << std::endl;
   return 0;
 }
