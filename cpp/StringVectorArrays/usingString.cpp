@@ -59,8 +59,21 @@ void adding_string_and_literal() {
   std::cout << "Hello " + s1 + "world " + "s1"
             << "\n";
 }
+void processing_char_of_string(const std::string &expression) {
+  for (const char &charector : expression) {
+    std::cout << charector << "\n";
+  }
+}
 
+std::string &making_upper_case(std::string &input) {
+  for (char &one_char : input) {
+    one_char = toupper(one_char);
+  }
+  return input;
+}
 int main() {
-  adding_string_and_literal();
+  std::string input("hello world");
+  std::cout << &input[0] << "\n";
+  std::cout << making_upper_case(input) << "\n";
   return 0;
 }
