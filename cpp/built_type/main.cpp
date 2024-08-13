@@ -3,10 +3,10 @@
 void typeConversion() {
   bool b = 42;
   int i = 42;
-  i = 3.14;
+  i = 3;
   double pi = i;
   unsigned char c = -1;
-  signed char c2 = 256;
+  signed char c2 = ' ';
 
   std::cout << "boolean " << b << "\n";
   std::cout << "int " << i << "\n";
@@ -52,7 +52,27 @@ void pointer_is_an_object() {
   // we can also take a reference of a pointer cause it's also an object
   std::cout << &pppvalue << "\n";
 }
+
+void const_reference() {
+  int i = 42;
+  const int &r1 = i;
+  const int &r2 = 42;
+  const int *r3 = &i;
+  std::cout << r1 << "\n";
+  std::cout << &r2 << "\n";
+  std::cout << r3 << "\n";
+  std::cout << *r3++ << "\n";
+}
+
+int get_size() { return 10; }
+
+void const_qualifier() {
+  const int i = get_size();
+  const int j = 42;
+  std::cout << i << "\n";
+}
+
 int main() {
-  pointer_is_an_object();
+  const_qualifier();
   return 0;
 }
