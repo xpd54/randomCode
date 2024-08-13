@@ -93,10 +93,29 @@ void const_pointer() {
   std::cout << *non_ptr << std::endl;
   std::cout << &non_r_pi << std::endl;
   std::cout << &non_pi << std::endl;
+}
 
+void const_nonchange_pointer() {
+  const double pi = 3.14;
+  double variable = 3.14;
+  double &r_variable = variable;
+  // as p_variable is is const pointer which is pointing to non
+  // const object it can't be used to change the value of object which it's
+  // pointing to.
+  const double *p_variable = &variable;
+  /* but as p_changeable_variable is non const it can and the r_variable be used
+   * to change the underline value which both pointer is pointing to or
+   * reference is refering. */
+  double *p_changeable_variable = &variable;
+  std::cout << *p_variable << std::endl;
+  std::cout << r_variable << std::endl;
+  r_variable = 5.14;
+  std::cout << r_variable << " should be 5.14 " << std::endl;
+  *p_changeable_variable = 6.14;
+  std::cout << variable << " variable should be 6.14" << std::endl;
 }
 
 int main() {
-  const_pointer();
+  const_nonchange_pointer();
   return 0;
 }
