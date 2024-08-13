@@ -82,7 +82,21 @@ void const_qualifier() {
   std::cout << i << "\n";
 }
 
+void const_pointer() {
+  const double pi = 3.14;
+  const double *ptr = &pi;
+  double non_pi = 3.14;
+  double &non_r_pi = non_pi;
+  double *non_ptr = &non_pi;
+  non_r_pi = 5.123;
+  std::cout << non_ptr << std::endl;
+  std::cout << *non_ptr << std::endl;
+  std::cout << &non_r_pi << std::endl;
+  std::cout << &non_pi << std::endl;
+
+}
+
 int main() {
-  const_qualifier();
+  const_pointer();
   return 0;
 }
