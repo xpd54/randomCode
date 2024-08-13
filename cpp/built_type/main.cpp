@@ -33,9 +33,24 @@ void stringLiteral() {
 
 int global_int = 42;
 
+void pointer_is_an_object() {
+  int ivalue = 42;
+  int *pvalue = &ivalue;
+  /*As pointer itself is a object we can take reference of that pointer
+  And we can also have another pointer pointing to that ponter itself. It can
+  keep going to as many level as possible.*/
+  int **ppvalue = &pvalue;
+  int ***pppvalue = &ppvalue;
+  std::cout << pvalue << "\n";
+  std::cout << *pvalue << "\n";
+  std::cout << &pvalue << "\n";
+  std::cout << ppvalue << "\n";
+  std::cout << *ppvalue << "\n";
+  std::cout << **ppvalue << "\n";
+  /*3 Level pointer */
+  std::cout << ***pppvalue << "\n";
+}
 int main() {
-  int global_int = 100;
-  int j = global_int;
-  std::cout << j << std::endl;
+  pointer_is_an_object();
   return 0;
 }
