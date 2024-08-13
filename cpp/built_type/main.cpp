@@ -75,6 +75,9 @@ void const_qualifier() {
   int &r_change_able = change_able;
   std::cout << change_able << "\n";
   r_change_able = 90;
+  const int &r_nonChangeable = j;
+  const int &ref = r_nonChangeable + 1;
+  std::cout << ref << "\n";
   std::cout << change_able << "\n";
   std::cout << i << "\n";
 }
