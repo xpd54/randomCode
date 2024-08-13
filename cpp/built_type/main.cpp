@@ -64,11 +64,18 @@ void const_reference() {
   std::cout << *r3++ << "\n";
 }
 
-int get_size() { return 10; }
+inline int get_size() { return 10; }
 
 void const_qualifier() {
+  // initialized at run time bu do have compiler optimization
   const int i = get_size();
   const int j = 42;
+  int change_able = 30;
+  // can use non const to change the underlining value which reference refers;
+  int &r_change_able = change_able;
+  std::cout << change_able << "\n";
+  r_change_able = 90;
+  std::cout << change_able << "\n";
   std::cout << i << "\n";
 }
 
