@@ -49,6 +49,8 @@ void pointer_is_an_object() {
   std::cout << **ppvalue << "\n";
   /*3 Level pointer */
   std::cout << ***pppvalue << "\n";
+  // we can also take a reference of a pointer cause it's also an object
+  std::cout << &pppvalue << "\n";
 }
 int main() {
   pointer_is_an_object();
