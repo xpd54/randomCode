@@ -32,7 +32,22 @@ void definition_inside_the_body() {
     }
   }
 }
+
+void try_catch_block() {
+  std::vector<int> input = {1, 2, 3, 4, 5, 6, 0, 2, 3, 4};
+  double base_value = 20.0;
+  for (auto &value : input) {
+    try {
+      double div = base_value / value;
+      std::cout << div << "\n";
+    } catch (std::exception exc) {
+      std::cout << "devided by 0 happen" << std::endl;
+      std::cout << exc.what() << std::endl;
+    }
+  }
+}
+
 int main() {
-  definition_inside_the_body();
+  try_catch_block();
   return 0;
 }
