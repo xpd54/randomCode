@@ -33,7 +33,66 @@ void value_initialize() {
   }
 }
 
+void range_for_loop() {
+  std::vector<int> vec{1, 3, 4, 5, 5, 6, 6};
+  for (int &value : vec) {
+    value *= value;
+  }
+
+  std::vector<int>::size_type size = vec.size();
+  std::cout << size << std::endl;
+  for (auto &value : vec) {
+    std::cout << value << std::endl;
+  }
+}
+
+void string_iterator() {
+  std::string str = "Some String";
+  auto start = str.begin();
+  auto end = str.end();
+  while (start != end) {
+    *start = toupper(*start);
+    ++start;
+  }
+  std::cout << str << std::endl;
+}
+
+void const_iterator() {
+  std::vector<int> holding{1, 3, 4, 5, 6, 7};
+  /*const_iterator only get used to read the element from container but it
+      can't update the object which container is holding. */
+  std::vector<int>::const_iterator start_it = holding.begin();
+  std::vector<int>::const_iterator end_it = holding.end();
+  while (start_it != end_it) {
+    std::cout << *start_it << "\n";
+    start_it++;
+  }
+  std::cout << std::endl << std::endl;
+  std::vector<int>::iterator start_it_update = holding.begin();
+  std::vector<int>::iterator end_it_update = holding.end();
+  while (start_it_update != end_it_update) {
+    *start_it_update *= (*start_it_update);
+    start_it_update++;
+  }
+}
+
+void binary_search(const int &search_value) {
+  const std::vector<int> holding = {1,  23, 36,  48,  59,  72,
+                                    82, 98, 100, 123, 456, 800};
+  std::vector<int>::const_iterator start = holding.begin();
+  std::vector<int>::const_iterator end = holding.end();
+  std::vector<int>::const_iterator mid = start + (end - start) / 2;
+  while (mid != end && *mid != search_value) {
+    if (search_value < *mid)
+      end = mid;
+    else
+      start = mid + 1;
+    mid = start + (end - start) / 2;
+  }
+  std::cout << "found value " << *mid << "\n";
+}
+
 int main() {
-  value_initialize();
+  binary_search(80);
   return 0;
 }
