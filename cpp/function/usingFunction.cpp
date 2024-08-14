@@ -1,5 +1,5 @@
 #include "usingFunction.h"
-
+#include <iostream>
 /* using reference of value makes argument to accpet only lvalue. Which mean
  * passing rvalue or literal here will throw error.
  */
@@ -20,3 +20,12 @@ int count_calling() {
   return value++;
 }
 
+void printing_with_two_pointer() {
+  int i = 10;
+  int *p, *q;
+  p = &i;
+  q = p;
+  std::cout << i << " " << *p << " " << *q << std::endl;
+  *q = 20;
+  std::cout << i << " " << *p << " " << *q << std::endl;
+}
