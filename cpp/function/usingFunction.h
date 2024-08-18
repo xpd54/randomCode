@@ -15,3 +15,4 @@ int factorial(int val);
  * declaired into function declaration, And skip that in defination.
  */
 void print_vector(const std::vector<int> &, size_t size = 0);
+void print_vector(const std::vector<int> &input = {}, size_t);
