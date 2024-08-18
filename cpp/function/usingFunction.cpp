@@ -29,3 +29,39 @@ void printing_with_two_pointer() {
   *q = 20;
   std::cout << i << " " << *p << " " << *q << std::endl;
 }
+
+void sum_of_value(const int &left, const int &right, int &sum) {
+  sum = left + right;
+}
+
+void print_c_style_char_array(const char *char_array) {
+  if (char_array) {
+    while (*char_array)
+      std::cout << *char_array++;
+    std::cout << std::endl;
+  }
+}
+
+void print_array_with_iterator(const int *begin, const int *end) {
+  while (begin != end)
+    std::cout << *begin++ << std::endl;
+}
+
+void error_msg(std::initializer_list<std::string> il) {
+  for (auto beg = il.begin(); beg != il.end(); ++beg) {
+    std::cout << *beg << " ";
+  }
+  std::cout << std::endl;
+}
+
+std::string &shorter_string(std::string &s1, std::string &s2) {
+  return s1.size() <= s2.size() ? s1 : s2;
+}
+
+char &get_val(std::string &str, std::string::size_type ix) { return str[ix]; }
+
+int factorial(int val) {
+  if (val > 1)
+    return factorial(val - 1) * val;
+  return 1;
+}

@@ -2,6 +2,10 @@
 #include <iostream>
 #include <vector>
 int main() {
-  printing_with_two_pointer();
+  std::string s1("Hello World");
+  get_val(s1, 0) = 'A';
+  std::cout << s1 << std::endl;
+
+  std::cout << factorial(5) << std::endl;
   return 0;
 }
