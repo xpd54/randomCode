@@ -65,3 +65,11 @@ int factorial(int val) {
     return factorial(val - 1) * val;
   return 1;
 }
+
+void print_vector(const std::vector<int> &input, size_t size) {
+  if (size >= input.size()) {
+    return;
+  }
+  std::cout << input[size] << " ";
+  print_vector(input, size + 1);
+}
