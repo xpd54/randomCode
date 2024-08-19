@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 class Screen {
 public:
@@ -11,9 +12,20 @@ public:
   inline Screen &set(char);
   inline Screen &set(pos, pos, char);
 
+  Screen &display(std::ostream &os) {
+    do_display(os);
+    return *this;
+  }
+
+  const Screen &display(std::ostream &os) const {
+    do_display(os);
+    return *this;
+  }
+
 private:
   pos cursor = 0;
   pos height = 0;
   pos width = 0;
   std::string contentens;
+  void do_display(std::ostream &os) const { os << contentens; }
 };
