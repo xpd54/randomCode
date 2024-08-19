@@ -15,6 +15,15 @@ private:
   void remove_from_Folders();
 
 public:
-  Message(/* args */);
+  // folders is implicitly initialized to the empty set
+  explicit Message(const std::string &str = " ") : contents(str) {}
+
+  // copy control to manage pointers to the Message
+  Message(const Message &);            // copy constructor
+  Message &operator=(const Message &); // copy assignment
   ~Message();
+
+  // add/remove this Message from the specified Folder's set of message
+  void save(Folder &);
+  void remove(Folder &);
 };
