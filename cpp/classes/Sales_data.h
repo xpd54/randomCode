@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-struct Sales_data {
+class Sales_data {
+public:
   Sales_data() = default;
   Sales_data(std::istream &);
   Sales_data(const std::string &s, unsigned n, double p)
