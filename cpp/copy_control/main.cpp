@@ -74,6 +74,25 @@ void create_folder_and_message() {
   copy_ticket.print_list_folders();
 }
 
+Message return_rvalue_message() {
+  Message original("Hello World, We gonna move");
+  return original;
+}
+
+/* Using rvalue vs lvalue can show difference for how copy assignment, copy
+ * constructor, move assignment and move constructor is working around here.to
+ * get rvalue we can use std::move or if a function is returning message that
+ * returns rvalue
+ */
+void moving_message() {
+  Message empty_message;
+  Message another("hello");
+  Message originalMessage(another);
+  originalMessage.print_message_contents();
+  empty_message = originalMessage;
+  empty_message.print_message_contents();
+}
 int main() {
+  moving_message();
   return 0;
 }

@@ -3,10 +3,20 @@
 #include <iostream>
 Message::Message(const Message &msg)
     : contents(msg.contents), folders(msg.folders) {
+  std::cout << "copy constructor"
+            << "\n";
   add_to_Folders(msg); // add this message to the Folders that points to msg
 }
 
+Message::Message(Message &&msg) : contents(std::move(msg.contents)) {
+  std::cout << "move constructor"
+            << "\n";
+  move_Folders(&msg);
+}
+
 Message &Message::operator=(const Message &rhs_msg) {
+  std::cout << "copy assignment"
+            << "\n";
   /*As we are making copy from right to left left should get clean up that's
    * exactly what remove_from_folders does it remove all the reference where
    * this was added in folders*/
@@ -17,6 +27,20 @@ Message &Message::operator=(const Message &rhs_msg) {
                              // will get called)
   add_to_Folders(
       rhs_msg); // add this message to the folders where all rhs_msg was added
+  return *this;
+}
+
+// Message &&rhs_msg is r value reference. means &rhs_msg make total sense
+Message &Message::operator=(Message &&rhs_msg) {
+  std::cout << "move is assignment"
+            << "\n";
+  // protect from self move
+  if (this != &rhs_msg) {
+    remove_from_Folders();
+    // careful not to move the folder first as after that contents get deleted.
+    contents = std::move(rhs_msg.contents);
+    move_Folders(&rhs_msg);
+  }
   return *this;
 }
 
@@ -49,3 +73,12 @@ void Message::print_list_folders() {
 }
 
 void Message::print_message_contents() { std::cout << contents << std::endl; }
+
+void Message::move_Folders(Message *m) {
+  folders = std::move(m->folders);
+  for (auto f : folders) {
+    f->remMeg(m);
+    f->addMsg(this);
+  }
+  m->folders.clear();
+}
