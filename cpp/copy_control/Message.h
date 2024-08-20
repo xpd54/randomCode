@@ -1,6 +1,7 @@
-#include "Folder.h"
+#pragma once
 #include <set>
 #include <string>
+class Folder;
 class Message {
   friend class Folder;
 
