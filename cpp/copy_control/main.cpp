@@ -1,3 +1,4 @@
+#include "main.h"
 #include "Folder.h"
 #include "Message.h"
 #include <iostream>
@@ -29,6 +30,10 @@ void add_and_print_holding() {
   holding.print();
 }
 
+void seperator() {
+  std::cout << "---------------------------------------" << std::endl;
+}
+
 void create_folder_and_message() {
   Folder travel("Travel");
   Message ticket("Hello your ticket is confrimed to NYC pelase find pdf.");
@@ -53,8 +58,20 @@ void create_folder_and_message() {
   // in next print visa message shouldn't be there.
   visa.remove(travel);
   Folder copy_of_travel(travel);
-  std::cout << "---------------------------------------" << std::endl;
+
+  seperator();
   print_message_contents_of_folder(copy_of_travel);
+
+  seperator();
+
+  // copy constructor
+  Message copy_ticket(ticket);
+  copy_ticket.print_list_folders();
+
+  seperator();
+  // copy assignment for message
+  copy_ticket = space_joke;
+  copy_ticket.print_list_folders();
 }
 
 int main() {
