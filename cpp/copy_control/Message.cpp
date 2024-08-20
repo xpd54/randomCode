@@ -1,6 +1,6 @@
 #include "Message.h"
 #include "Folder.h"
-
+#include <iostream>
 Message::Message(const Message &msg)
     : contents(msg.contents), folders(msg.folders) {
   add_to_Folders(msg); // add this message to the Folders that points to msg
@@ -20,9 +20,7 @@ Message &Message::operator=(const Message &rhs_msg) {
   return *this;
 }
 
-Message::~Message() {
-  remove_from_Folders();
-}
+Message::~Message() { remove_from_Folders(); }
 
 void Message::save(Folder &f) {
   folders.insert(&f);
@@ -44,3 +42,10 @@ void Message::remove_from_Folders() {
     folder->remMeg(this);
   folders.clear(); // no folders points to this message
 }
+
+void Message::print_list_folders() {
+  for (auto &value : folders)
+    std::cout << value->get_folder_name() << std::endl;
+}
+
+void Message::print_message_contents() { std::cout << contents << std::endl; }

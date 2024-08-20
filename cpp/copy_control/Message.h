@@ -27,4 +27,6 @@ public:
   // add/remove this Message from the specified Folder's set of message
   void save(Folder &);
   void remove(Folder &);
+  void print_list_folders();
+  void print_message_contents();
 };
