@@ -75,6 +75,5 @@ void create_folder_and_message() {
 }
 
 int main() {
-  create_folder_and_message();
   return 0;
 }
