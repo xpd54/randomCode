@@ -26,10 +26,10 @@ public:
   explicit Message(const std::string &str = " ") : contents(str) {}
 
   // copy control to manage pointers to the Message
-  Message(const Message &);             // copy constructor
-  Message(Message &&);                  // move constructor
-  Message &operator=(const Message &);  // copy assignment
-  Message &operator=(Message &&); // move assignment
+  Message(const Message &);            // copy constructor
+  Message(Message &&);                 // move constructor
+  Message &operator=(const Message &); // copy assignment
+  Message &operator=(Message &&);      // move assignment
   ~Message();
 
   // add/remove this Message from the specified Folder's set of message

@@ -57,6 +57,7 @@ void Message::remove(Folder &f) {
 }
 
 void Message::add_to_Folders(const Message &message) {
+
   for (auto &folder : message.folders)
     folder->addMsg(this);
 }

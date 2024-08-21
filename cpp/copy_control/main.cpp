@@ -53,25 +53,25 @@ void create_folder_and_message() {
   dm_joke.save(travel);
   space_joke.save(travel);
 
-  space_joke.print_list_folders();
-  print_message_contents_of_folder(travel);
+  // space_joke.print_list_folders();
+  // print_message_contents_of_folder(travel);
   // in next print visa message shouldn't be there.
   visa.remove(travel);
   Folder copy_of_travel(travel);
 
   seperator();
-  print_message_contents_of_folder(copy_of_travel);
+  // print_message_contents_of_folder(copy_of_travel);
 
   seperator();
 
   // copy constructor
   Message copy_ticket(ticket);
-  copy_ticket.print_list_folders();
+  // copy_ticket.print_list_folders();
 
   seperator();
   // copy assignment for message
   copy_ticket = space_joke;
-  copy_ticket.print_list_folders();
+  // copy_ticket.print_list_folders();
 }
 
 Message return_rvalue_message() {
@@ -87,12 +87,30 @@ Message return_rvalue_message() {
 void moving_message() {
   Message empty_message;
   Message another("hello");
-  Message originalMessage(another);
-  originalMessage.print_message_contents();
-  empty_message = originalMessage;
-  empty_message.print_message_contents();
+  Message originalMessage(std::move(another));
+  // originalMessage.print_message_contents();
+  empty_message = return_rvalue_message();
+  // empty_message.print_message_contents();
+}
+
+void print_rvalue(std::string &&value) { std::cout << value << std::endl; }
+
+void print_pointer() {
+  int a = 43;
+  int *ap = &a;
+  int *bp = std::move(ap);
+
+  std::cout << &ap << " " << &bp << std::endl;
+  std::cout << ap << " " << bp << std::endl;
+  std::cout << *ap << " " << *bp << " " << &a << std::endl;
+
 }
 int main() {
-  moving_message();
+  print_pointer();
+  // moving_message();
+  // std::string a("hello");
+  // print_rvalue(std::move(a));
+  // std::cout << a << std::endl;
+  // create_folder_and_message();
   return 0;
 }
