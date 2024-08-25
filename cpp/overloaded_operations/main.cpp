@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 class absInt {
 public:
   int operator()(int val) { return val < 0 ? -val : val; }
@@ -55,6 +56,18 @@ public:
       return value;
   }
 
+  std::vector<std::string> &operator()(std::istream &in,
+                                       std::vector<std::string> &contents) {
+    std::string value;
+    /* let's use eof() which indecate input stream has been ended by end of
+  file. to semulate this from terminal we can press Ctrl+D on mac os
+*/
+    while (std::getline(in, value, '.') && !in.eof()) {
+      contents.push_back(value);
+    }
+    return contents;
+  }
+
 private:
   std::istream &input;
 };
@@ -63,9 +76,15 @@ void readStringExample() {
   ReadString reading;
   std::string value = reading(std::cin);
   std::cout << value << "\n";
+  std::vector<std::string> contents;
+  reading(std::cin, contents);
+
+  for (auto &value : contents)
+    std::cout << value << std::endl;
 }
 
 int main() {
   readStringExample();
+
   return 0;
 }
