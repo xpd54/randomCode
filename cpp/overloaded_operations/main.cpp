@@ -12,6 +12,12 @@ public:
   /* doesn't return anythign but have input string and print the string with
    * seperator which was defined */
   void operator()(const std::string &s) const { os << s << sep << " "; }
+  // overloading an operator override and use another to complete
+  void operator()(const std::string &s, int count = 5) {
+    while (--count) {
+      operator()(s);
+    }
+  }
 
 private:
   std::ostream &os; // stream on which to write
@@ -32,5 +38,9 @@ int main() {
   PrintString error_printer(std::cerr, '|');
   error_printer(input);
   error_printer(follow_input);
+
+  std::string oneValue("x");
+
+  printer(oneValue, 4);
   return 0;
 }
