@@ -24,7 +24,7 @@ private:
   char sep;         // character to print after each output;
 };
 
-int main() {
+void PrintStringExample() {
   int i = -42;
   absInt absObj;
   std::cout << absObj(i) << std::endl;
@@ -40,7 +40,32 @@ int main() {
   error_printer(follow_input);
 
   std::string oneValue("x");
-
   printer(oneValue, 4);
+}
+
+class ReadString {
+public:
+  ReadString(std::istream &in = std::cin) : input(in) {}
+  std::string operator()(std::istream &in) {
+    std::string value;
+    // reading a line which have default delimator as "\n";
+    if (getline(in, value)) {
+      return value;
+    } else
+      return value;
+  }
+
+private:
+  std::istream &input;
+};
+
+void readStringExample() {
+  ReadString reading;
+  std::string value = reading(std::cin);
+  std::cout << value << "\n";
+}
+
+int main() {
+  readStringExample();
   return 0;
 }
