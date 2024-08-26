@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -131,7 +132,38 @@ void useSizeCompToFindString() {
   std::cout << *wc << std::endl;
 }
 
+/*Library Defined function object*/
+void usingLibraryDefinedFunctionObject() {
+  std::plus<int> intAdd;
+  int sum = intAdd(10, 20);
+  std::cout << sum << "\n";
+
+  std::vector<int> values{2, 3, 2990, 234, 5343, 6452, 12312, 89};
+  // std::count(values.begin(), values.end(), std::greater<int>());
+}
+
+void usingLambdasWillNotWork() {
+  std::vector<std::string *> input_p;
+  std::vector<std::string> input{"one", "two", "three", "six", "four", "five"};
+  // using lambda in for_each to push_back while making a copy to input_p
+  std::for_each(input.begin(), input.end(),
+                [&input_p](std::string &s) { input_p.push_back(&s); });
+  std::cout << "-------------sorted by library function object-------"
+            << "\n";
+  std::sort(input_p.begin(), input_p.end(), std::less<std::string *>());
+  std::for_each(input_p.begin(), input_p.end(),
+                [](auto s) { std::cout << *s << std::endl; });
+  std::cout << "-------------sorted by function object-------------"
+            << "\n";
+  std::sort(input_p.begin(), input_p.end(), [](std::string *a, std::string *b) {
+    // it would not work if we use return a < b
+    return a < b;
+  });
+  std::for_each(input_p.begin(), input_p.end(),
+                [](auto s) { std::cout << *s << std::endl; });
+}
+
 int main() {
-  useSizeCompToFindString();
+  usingLambdasWillNotWork();
   return 0;
 }
