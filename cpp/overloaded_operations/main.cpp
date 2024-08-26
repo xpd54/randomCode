@@ -105,7 +105,33 @@ void usePrintObjectInForEach() {
   std::for_each(input.begin(), input.end(), PrintString(std::cout, '\n'));
 }
 
+/*Lambdas which captures value are unnamed object of unnamed class where
+ * constructor is not a synthesized it takes a parameter.*/
+
+class SizeComp {
+public:
+  SizeComp(size_t n) : sz(n) {}
+  bool operator()(const std::string &s) const { return s.size() >= sz; }
+
+private:
+  size_t sz;
+};
+
+void useSizeCompToFindString() {
+  std::vector<std::string> input{"one", "two", "three", "six", "four", "five"};
+  /* returns iterator of first item which has been found with given function
+   * object, In this case returns iterator when size of the string is greater or
+   * equal to 4. Return type can be used auto in this case, I am just using full
+   * version for my own understanding, In this case
+   * std::vector<std::string>::iterator is a type*/
+
+  std::vector<std::string>::iterator wc =
+      std::find_if(input.begin(), input.end(), SizeComp(4));
+  std::cout << *wc++ << std::endl;
+  std::cout << *wc << std::endl;
+}
+
 int main() {
-  usePrintObjectInForEach();
+  useSizeCompToFindString();
   return 0;
 }
