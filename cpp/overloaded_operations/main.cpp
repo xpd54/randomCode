@@ -83,8 +83,23 @@ void readStringExample() {
     std::cout << value << std::endl;
 }
 
+/*
+Lambdas are function object
+*/
+class ShorterString {
+public:
+  bool operator()(const std::string &s1, const std::string &s2) const {
+    return s1.size() < s2.size();
+  }
+};
+
 void usePrintObjectInForEach() {
   std::vector<std::string> input{"one", "two", "three", "four", "five"};
+
+  /* Using a funciton object to pass function object. Lambdas are unnamed object
+   * of unnamed class, Here as well rvalue and calling the constructor which is
+   * synthesized constructor*/
+  std::stable_sort(input.begin(), input.end(), ShorterString());
   /* Here the function is a rvalue which we are creating by calling
    * constructor*/
   std::for_each(input.begin(), input.end(), PrintString(std::cout, '\n'));
