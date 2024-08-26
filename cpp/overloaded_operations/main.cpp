@@ -12,13 +12,13 @@ public:
   PrintString(char c) : PrintString(std::cout, c) {}
   /* doesn't return anythign but have input string and print the string with
    * seperator which was defined */
-  void operator()(const std::string &s) const { os << s << sep << " "; }
+  void operator()(const std::string &s) const { os << s << sep; }
   // overloading an operator override and use another to complete
-  void operator()(const std::string &s, int count = 5) {
+  /*void operator()(const std::string &s, int count = 5) {
     while (--count) {
       operator()(s);
     }
-  }
+  }*/
 
 private:
   std::ostream &os; // stream on which to write
@@ -41,7 +41,7 @@ void PrintStringExample() {
   error_printer(follow_input);
 
   std::string oneValue("x");
-  printer(oneValue, 4);
+  // printer(oneValue, 4);
 }
 
 class ReadString {
@@ -83,8 +83,14 @@ void readStringExample() {
     std::cout << value << std::endl;
 }
 
-int main() {
-  readStringExample();
+void usePrintObjectInForEach() {
+  std::vector<std::string> input{"one", "two", "three", "four", "five"};
+  /* Here the function is a rvalue which we are creating by calling
+   * constructor*/
+  std::for_each(input.begin(), input.end(), PrintString(std::cout, '\n'));
+}
 
+int main() {
+  usePrintObjectInForEach();
   return 0;
 }
