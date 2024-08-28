@@ -1,5 +1,6 @@
 #include "Bulk_quote.h"
 #include "Quote.h"
+#include "StaticMemberInBase.cpp"
 #include "virtualBindingInRef.cpp"
 #include <iostream>
 /* As print_total is getting called via reference there gonna boe run-time
@@ -16,7 +17,5 @@ double print_total(std::ostream &os, const Quote &item, size_t n) {
 }
 
 int main() {
-  calling_by_ref();
-  calling_by_value();
   return 0;
 }
