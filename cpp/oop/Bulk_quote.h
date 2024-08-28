@@ -5,7 +5,10 @@
 class Bulk_quote : public Quote {
 public:
   Bulk_quote() = default;
-  Bulk_quote(const std::string &, double, size_t, double);
+  ~Bulk_quote() override{};
+  Bulk_quote(const std::string &isbn, double price, size_t quntity,
+             double discount);
+
   // overrides the base version in order to implement the bulk purchase discount
   // policy
   double net_price(size_t) const override;
