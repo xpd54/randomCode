@@ -1,5 +1,6 @@
 #include "Bulk_quote.h"
 #include "Quote.h"
+#include "Disc_quote.h"
 #include "virtualBindingInRef.cpp"
 #include <iostream>
 /* As print_total is getting called via reference there gonna boe run-time
