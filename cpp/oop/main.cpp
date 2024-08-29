@@ -38,13 +38,14 @@ void bulk_vs_quote() {
 }
 
 void runningDestructor() {
-  Quote *pItem = new Bulk_quote;
+  Quote pItem;
+  Bulk_quote item;
   // delete pItem;
   // pItem = new Bulk_quote;
 }
 
 int main() {
-  Bulk_quote q;
-  // runningDestructor();
+  // Bulk_quote q;
+  runningDestructor();
   return 0;
 }
