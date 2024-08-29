@@ -65,7 +65,7 @@ int main() {
   publicBase.publicMethod();
   // publicBase.protectedMethod();
   // publicBase.privateMethod();
-  base = publicBase;
+  base = publicBase; // only if it's public inherits 
   ProtectedBase protectedBase;
   protectedBase.accessMethod();
   // protectedBase.publicMethod();
@@ -73,6 +73,7 @@ int main() {
   // protectedBase.privateMethod();
   PrivateBase privateBase;
   privateBase.accessMethod();
+  // base = privateBase; can't as it's not public
   // privateBase.publicMethod();
   // privateBase.protectedMethod();
   // privateBase.privateMethod();
