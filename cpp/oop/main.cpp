@@ -1,6 +1,6 @@
 #include "Bulk_quote.h"
-#include "Quote.h"
 #include "Disc_quote.h"
+#include "Quote.h"
 #include "virtualBindingInRef.cpp"
 #include <iostream>
 /* As print_total is getting called via reference there gonna boe run-time
@@ -30,9 +30,21 @@ void bulk_vs_quote() {
   print_total(std::cout, item, 10);
   // calling Quote's net_price which would be 250 since there is not discount
   std::cout << "Calling Quote price for 5:- " << item.net_price(5) << std::endl;
+
+  Quote *pItem = new Quote();
+  delete pItem;
+  pItem = new Bulk_quote();
+  delete pItem;
+}
+
+void runningDestructor() {
+  Quote *pItem = new Bulk_quote;
+  // delete pItem;
+  // pItem = new Bulk_quote;
 }
 
 int main() {
-  bulk_vs_quote();
+  Bulk_quote q;
+  // runningDestructor();
   return 0;
 }

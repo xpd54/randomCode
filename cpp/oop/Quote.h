@@ -1,5 +1,7 @@
 #pragma once
+#include <iostream>
 #include <string>
+
 class Quote {
 private:
   std::string bookNo; // ISBN number of this item
@@ -16,5 +18,8 @@ public:
 
   /*classes used as root of an inheritance hierarchy always define a virtual
    * destructor*/
-  virtual ~Quote() = default; // dynamic binding for destructor
+  virtual ~Quote() {
+    std::cout << "Runing Destructor in Quote"
+              << "\n";
+  }; // dynamic binding for destructor
 };
