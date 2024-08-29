@@ -3,17 +3,18 @@
 class Base {
 public:
   void publicMethod() {
-    std::cout << "Public method of Base class" << std::endl;
+    std::cout << "Public method of Base class " << value << std::endl;
   }
 
 protected:
+  int value = 10;
   void protectedMethod() {
     std::cout << "Protected method of Base class" << std::endl;
   }
 
 private:
   void privateMethod() {
-    std::cout << "Private method of Base class" << std::endl;
+    std::cout << "Private method of Base class " << std::endl;
   }
 };
 
@@ -65,7 +66,7 @@ int main() {
   publicBase.publicMethod();
   // publicBase.protectedMethod();
   // publicBase.privateMethod();
-  base = publicBase; // only if it's public inherits 
+  base = publicBase; // only if it's public inherits
   ProtectedBase protectedBase;
   protectedBase.accessMethod();
   // protectedBase.publicMethod();
