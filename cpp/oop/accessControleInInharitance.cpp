@@ -19,46 +19,65 @@ private:
 
 class PublicBase : public Base {
 public:
-  void publicMethod();
-  void protectedMethod();
-  void privateMethod();
+  void accessMethod() {
+    publicMethod();    // it's accessible
+    protectedMethod(); // it's accessible but became protected here so can't
+                       // access with  object
+    // privateMethod(); // not accessible
+  }
 };
 
 class ProtectedBase : protected Base {
 public:
-  void publicMethod();
-  void protectedMethod();
-  void privateMethod();
+  void accessMethod() {
+    publicMethod();
+    protectedMethod();
+    // privateMethod(); // not accessible
+  }
 };
 
 class PrivateBase : private Base {
 public:
-  void publicMethod();
-  void protectedMethod();
-  void privateMethod();
+  void accessMethod() {
+    publicMethod();
+    protectedMethod();
+    // privateMethod(); /// not accessible
+  }
+};
+
+class ThirdLevel : public PrivateBase {
+public:
+  void acessMethod() {
+    // publicMethod(); // can't access any of method
+    // protectedMethod();
+  }
 };
 
 int main() {
 
   Base base;
   base.publicMethod();
-  base.protectedMethod();
-  base.privateMethod();
+  // base.protectedMethod();
+  // base.privateMethod();
 
   PublicBase publicBase;
+  publicBase.accessMethod();
   publicBase.publicMethod();
-  publicBase.protectedMethod();
-  publicBase.privateMethod();
-
+  // publicBase.protectedMethod();
+  // publicBase.privateMethod();
+  base = publicBase;
   ProtectedBase protectedBase;
-  protectedBase.publicMethod();
-  protectedBase.protectedMethod();
-  protectedBase.privateMethod();
-
+  protectedBase.accessMethod();
+  // protectedBase.publicMethod();
+  // protectedBase.protectedMethod();
+  // protectedBase.privateMethod();
   PrivateBase privateBase;
-  privateBase.publicMethod();
-  privateBase.protectedMethod();
-  privateBase.privateMethod();
-
+  privateBase.accessMethod();
+  // privateBase.publicMethod();
+  // privateBase.protectedMethod();
+  // privateBase.privateMethod();
+  ThirdLevel level;
+  level.accessMethod();
+  // level.publicMethod();
   return 0;
 }
