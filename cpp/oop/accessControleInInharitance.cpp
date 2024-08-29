@@ -1,18 +1,23 @@
 #include <iostream>
+class MyFriend;
 
 class Base {
+  friend MyFriend;
+
 public:
+  int pub_value = 5;
   void publicMethod() {
-    std::cout << "Public method of Base class " << value << std::endl;
+    std::cout << "Public method of Base class " << prot_value << std::endl;
   }
 
 protected:
-  int value = 10;
+  int prot_value = 10;
   void protectedMethod() {
     std::cout << "Protected method of Base class" << std::endl;
   }
 
 private:
+  int priv_value = 5;
   void privateMethod() {
     std::cout << "Private method of Base class " << std::endl;
   }
@@ -54,6 +59,16 @@ public:
   }
 };
 
+class MyFriend {
+public:
+  void getValue() {
+    Base base;
+    std::cout << "public " << base.pub_value << std::endl;
+    std::cout << "protected " << base.prot_value << std::endl;
+    std::cout << "private " << base.priv_value << std::endl;
+  }
+};
+
 int main() {
 
   Base base;
@@ -81,5 +96,8 @@ int main() {
   ThirdLevel level;
   level.accessMethod();
   // level.publicMethod();
+
+  MyFriend fr;
+  fr.getValue();
   return 0;
 }
