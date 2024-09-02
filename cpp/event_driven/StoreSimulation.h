@@ -10,4 +10,4 @@ public:
   void leave(size_t numberOfPeople);
   size_t freeChairs;
   double profit;
-};
+} theSimulation;

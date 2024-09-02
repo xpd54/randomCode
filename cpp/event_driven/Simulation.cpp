@@ -8,3 +8,5 @@ void Simulation::run() {
     delete nextEvent;
   }
 }
+
+void Simulation::scheduleEvent(Event *newEvent) { eventQueue.push(newEvent); }

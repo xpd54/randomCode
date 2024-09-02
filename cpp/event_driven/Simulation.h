@@ -5,6 +5,7 @@ class Simulation {
 public:
   Simulation() : time(0), eventQueue() {}
   void run();
+  void scheduleEvent(Event *newEvent);
   size_t time;
 
 protected:
