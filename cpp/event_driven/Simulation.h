@@ -1,0 +1,14 @@
+#pragma once
+#include <Event.h>
+#include <queue>
+class Simulation {
+public:
+  Simulation() : time(0), eventQueue() {}
+  void run();
+  size_t time;
+
+protected:
+  std::priority_queue<Event *, std::vector<Event *, std::allocator<Event *>>,
+                      eventComparator>
+      eventQueue;
+};
