@@ -11,12 +11,12 @@ int main() {
             << "\n";
   for (size_t t = 0; t < 20; ++t) {
     std::cout << "pumping queue with event" << t << "\n";
-    theSimulation.scheduleEvent(new ArriveEvent(t, 1 + 3));
+    StoreSimulation::get_instance().scheduleEvent(new ArriveEvent(t, 1 + 3));
   }
 
-  theSimulation.run();
+  StoreSimulation::get_instance().run();
 
-  std::cout << "Total Profits" << theSimulation.profit << "\n"
+  std::cout << "Total Profits" << StoreSimulation::get_instance().profit << "\n"
             << "Enf of ice create store"
             << "\n";
   return 0;

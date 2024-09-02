@@ -1,3 +1,3 @@
 #include "LeaveEvent.h"
 #include "../StoreSimulation.h"
-void LeaveEvent::processEvent() { theSimulation.leave(size); }
+void LeaveEvent::processEvent() { StoreSimulation::get_instance().leave(size); }
