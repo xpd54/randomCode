@@ -16,7 +16,8 @@ int main() {
 
   StoreSimulation::get_instance().run();
 
-  std::cout << "Total Profits" << StoreSimulation::get_instance().profit << "\n"
+  std::cout << "Total Profits " << StoreSimulation::get_instance().profit
+            << "\n"
             << "Enf of ice create store"
             << "\n";
   return 0;
