@@ -8,5 +8,3 @@ void Simulation::run() {
     delete nextEvent;
   }
 }
-
-
