@@ -31,6 +31,7 @@ public:
                        // access with  object
     // privateMethod(); // not accessible
   }
+  
 };
 
 class ProtectedBase : protected Base {
