@@ -17,6 +17,8 @@ int main() {
   print(std::cout, 32);
   // uses print(ostream &, int); converts f to ostream
   std::ofstream f("output");
+  // looks like
+  // print(static_cast<std::basic_ostream<char>&>(f), 10);
   print(f, 10);
   return 0;
 }
