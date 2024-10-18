@@ -12,6 +12,10 @@ auto fcn_copy(It beg, It end) ->
   return *beg;
 }
 
+template <typename It> auto fcn_legal(It beg, It end) -> decltype(*beg + 0) {
+  return *beg;
+}
+
 int main() {
   std::vector<int> list = {1, 2, 3, 4};
   auto &second_it = fcn(list.begin(), list.end());
@@ -33,6 +37,11 @@ int main() {
   auto &second_greeting_copy_changed =
       fcn(list_string.begin(), list_string.end());
   std::cout << second_greeting_copy_changed << std::endl;
+
+  // Test Legal template
+  // It's legal but only for Int we can't hold string in this case cause operator+ is not valid;
+  auto second = fcn_legal(list.begin(), list.end());
+  std::cout << second << std::endl;
 
   return 0;
 }
