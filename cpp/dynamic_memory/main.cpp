@@ -10,5 +10,7 @@ int main() {
   std::cout << blob.size() << std::endl;
   std::cout << blob.front() << std::endl;
   std::cout << blob.back() << std::endl;
+  blob.pop_back();
+  std::cout << blob.back() << std::endl;
   return 0;
 }

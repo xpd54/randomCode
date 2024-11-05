@@ -16,6 +16,7 @@ public:
   std::string &front();
   std::string &back();
 
+
 private:
   std::shared_ptr<std::vector<std::string>> data;
   void check(size_type i, const std::string &msg) const;
