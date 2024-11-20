@@ -3,9 +3,11 @@
 #include <iostream>
 
 inline void print_pattern(Derived *derived) noexcept(false) {
-  std::cout << derived->get_pattern() << '\n';
   if (!(derived->get_value() % 2)) {
-    Base *pointer = derived;
+    Derived pointer = *derived;
+    throw pointer;
+  } else {
+    Base pointer = *derived;
     throw pointer;
   }
 }
