@@ -1,11 +1,13 @@
 #include "Base.h"
 #include "exception.h"
+#include <iostream>
+#include <memory>
 #include <vector>
 
 int main() {
-  std::vector<int> input{1, 2, 3, 4, 5, 6};
+  std::vector<int> input{5};
   for (auto &value : input) {
-    Derived *derived = new Derived(value, "Hello");
+    std::shared_ptr<Derived> derived(std::make_shared<Derived>(value, "Hello"));
     try {
       print_pattern(derived);
       /*Catch clause should be top derived to Base. In case where Base is first
@@ -15,9 +17,7 @@ int main() {
     } catch (Base value) {
       std::cout << "Caught By Base:- " << value.get_value() << '\n';
     }
+    std::cout << "Shared Count in main " << derived.use_count() << '\n';
   }
-
-  Base base(10);
-  std::cout << base.get_value() << '\n';
   return 0;
 }
