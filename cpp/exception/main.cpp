@@ -5,7 +5,7 @@
 #include <vector>
 
 int main() {
-  std::vector<int> input{5};
+  std::vector<int> input{6};
   for (auto &value : input) {
     std::shared_ptr<Derived> derived(std::make_shared<Derived>(value, "Hello"));
     try {
@@ -14,8 +14,11 @@ int main() {
        * and Derived is later all exception will be cought by Base.*/
     } catch (Derived value) {
       std::cout << "Caught By Derived:- " << value.get_value() << '\n';
+      throw;
     } catch (Base value) {
       std::cout << "Caught By Base:- " << value.get_value() << '\n';
+    } catch (...) {
+      std::cout << "Final caught" << '\n';
     }
     std::cout << "Shared Count in main " << derived.use_count() << '\n';
   }
