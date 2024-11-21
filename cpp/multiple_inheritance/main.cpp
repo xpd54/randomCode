@@ -21,6 +21,8 @@ void print_details(ZooAnimal &animal) {
 }
 
 void panda_as_a_bear() {
+  // Destructor suppose to be virtual when you want to delete an object of
+  // Derived class from the pointer of Base class.
   std::unique_ptr<Racoon> panda(new Panda("China"));
   std::cout << "panda see and run " << panda->see_and_run() << '\n';
   std::cout << "panda cuddle " << panda->cuddle() << '\n';
