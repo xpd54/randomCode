@@ -4,6 +4,7 @@ class Bear : public virtual ZooAnimal {
 public:
   Bear(bool cute, bool is_black);
   inline std::string get_color() { return color; };
+  inline bool see_and_run() { return should_run; }
 
 private:
   bool adorable;

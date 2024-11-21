@@ -7,5 +7,6 @@
 class Panda : public Bear, public Racoon, public Endangered {
 public:
   Panda(std::string origin);
+  inline bool see_and_run() { return Racoon::see_and_run(); }
   uint16_t get_max_weight() const;
 };
