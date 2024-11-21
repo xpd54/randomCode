@@ -1,7 +1,8 @@
 #pragma once
 #include "../ZooAnimal.h"
-class Bear : public ZooAnimal {
-  Bear(bool cute, bool origin);
+class Bear : public virtual ZooAnimal {
+public:
+  Bear(bool cute, bool is_black);
   inline std::string get_color() { return color; };
 
 private:
