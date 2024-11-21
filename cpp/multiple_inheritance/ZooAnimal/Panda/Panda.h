@@ -4,7 +4,7 @@
 #include "../Racoon/Racoon.h"
 #include <cstdint>
 
-class Panda : public Bear, public Racoon, public Endangered {
+class Panda : public Racoon, public Bear, public Endangered {
 public:
   Panda(std::string origin);
   inline bool see_and_run() { return Racoon::see_and_run(); }

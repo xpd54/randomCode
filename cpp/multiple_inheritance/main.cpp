@@ -3,6 +3,7 @@
 #include "ZooAnimal/Racoon/Racoon.h"
 #include "ZooAnimal/ZooAnimal.h"
 #include <iostream>
+#include <memory>
 
 void should_I_run(Bear &bear) {
   std::cout << (bear.see_and_run() ? "Run !!" : "No need") << '\n';
@@ -17,6 +18,12 @@ void print_details(ZooAnimal &animal) {
   std::cout << "Name:- " << details.name_of_animal << '\n';
   std::cout << "Country:- " << details.origin_country << '\n';
   std::cout << "Weight:- " << details.weight << '\n';
+}
+
+void panda_as_a_bear() {
+  std::unique_ptr<Racoon> panda(new Panda("China"));
+  std::cout << "panda see and run " << panda->see_and_run() << '\n';
+  std::cout << "panda cuddle " << panda->cuddle() << '\n';
 }
 
 int main() {
@@ -38,6 +45,10 @@ int main() {
     In case when both are virtual inharitance it only make one copy of
     ZooAnimal.
   */
-
   print_details(chinese_panda);
+
+  std::cout << "maxican panda is also protected in "
+            << only_maxican_panda.where_it_protected() << '\n';
+  panda_as_a_bear();
+  return 0;
 }
