@@ -11,6 +11,7 @@ class ZooAnimal {
 public:
   ZooAnimal(std::string name, std::string origin, uint16_t lb);
   AnimalDetails get_details() const;
+  inline std::string get_origin() { return origin_country; }
   uint16_t get_max_weight(uint16_t year_old) const;
 
 private:
