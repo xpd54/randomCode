@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/Users/raviprakash/Work/Project/randomCode/cpp/networking/build",
-  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/raviprakash/Work/Project/randomCode/cpp/networking/external/asio/include -std=gnu++17 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -o CMakeFiles/Network.dir/src/main.cpp.o -c /Users/raviprakash/Work/Project/randomCode/cpp/networking/src/main.cpp",
-  "file": "/Users/raviprakash/Work/Project/randomCode/cpp/networking/src/main.cpp",
-  "output": "CMakeFiles/Network.dir/src/main.cpp.o"
-}
-]
