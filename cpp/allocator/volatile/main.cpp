@@ -4,27 +4,33 @@
 #include <thread>
 
 volatile bool flag = false;
-volatile size_t start = 0;
 
 void set_flag() {
   std::this_thread::sleep_for(std::chrono::nanoseconds(1));
   flag = true;
-  while (flag) {
-    ++start;
-  }
 }
 
 int main() {
-  int count = 0;
-  std::thread exicute(set_flag);
-  while (!flag) {
-    ++count;
-  }
+  size_t count = 0;
+  size_t start = 0;
 
-  std::this_thread::sleep_for(std::chrono::nanoseconds(1));
-  flag = false;
+  std::thread starter([&]() {
+    while (!flag) ++start;
+  });
+
+  std::thread counter([&]() {
+    while (!flag) {
+      ++count;
+    }
+  });
+
+  std::thread exicute(set_flag);
+
+  starter.join();
   exicute.join();
-  std::cout << "flag counted : " << count << '\n';
+  counter.join();
   std::cout << "start counted : " << start << '\n';
+  std::cout << "count counted : " << count << '\n';
+
   return 1;
 }
