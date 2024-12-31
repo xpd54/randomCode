@@ -3,6 +3,9 @@
 #include <iostream>
 #include <thread>
 
+/*If we remove volatile and compile with -O3 result might be 0 for both start
+ * and count. Cause compiler cache the result. On part it wont' be predictable
+ * what would comes.*/
 volatile bool flag = false;
 
 void set_flag() {
