@@ -9,8 +9,8 @@ struct A {
 
 int main() {
   int x = 42;
-
-  A a(B(x));
-
+  // A a(B(x));
+  // Use {} not () for constructor
+  A a(B{x});
   a.doSomething();
 }
