@@ -10,6 +10,7 @@ class Foo {
   static size_t count;
 };
 
+// static in template class get other value for each instansiation
 template <typename T>
 size_t Foo<T>::count = 10;
 
