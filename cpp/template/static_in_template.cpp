@@ -16,5 +16,6 @@ size_t Foo<T>::count = 10;
 
 int main() {
   Foo<int> val;
+  cout << Foo<int>::get_count() << '\n';
   cout << val.get_count() << '\n';
 }
