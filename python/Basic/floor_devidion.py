@@ -1,7 +1,7 @@
-x , y = 7, 2
+x, y = 7, 2
 print(x / y)
 print(x // y)
 print(x * y)
-print(x ** y)
+print(x**y)
 
-print(10>> 2)
+print(10 >> 2)
