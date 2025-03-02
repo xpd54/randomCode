@@ -17,3 +17,8 @@ def count_x(nums: List[int], x: int) -> int:
 
 nums: List[int] = [1, 2, 3, 5, 56, 56, 5, 7, 8]
 print(count_x(nums, 5))
+
+
+print(nums.index(56))
+print(nums[1:3])
+print(nums[-3:])
