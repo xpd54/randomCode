@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from typing import Optional
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -35,3 +36,14 @@ def show(id):
 @app.get("/blog/{id}/comments")
 def comments(id: int):
     return {"data": {"comments": {"1", "2", id}}}
+
+
+class Blog(BaseModel):
+    title: str
+    body: str
+    published_at: Optional[bool]
+
+
+@app.post("/blog")
+def create_blog(request: Blog):
+    return {"data": f"Blog has been created with title as {request.title}"}
