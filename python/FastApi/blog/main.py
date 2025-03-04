@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, status
+from fastapi import FastAPI, Depends, status, Response, HTTPException
 from . import models, schemas
 from .database import engine, SessionLocal
 from sqlalchemy.orm import Session
@@ -24,13 +24,28 @@ def create(request: schemas.Blog, db: Session = Depends(get_db)):
     return new_blog
 
 
+@app.get("/blog/{id}", status_code=status.HTTP_200_OK)
+def show_id(id, response: Response, db: Session = Depends(get_db)):
+    blog = db.query(models.Blog).filter(models.Blog.id == id).first()
+    if not blog:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Blog with the id {id} is not avaialble",
+        )
+    return blog
+
+
+@app.delete("/blog/{id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_blog(id, db: Session = Depends(get_db)):
+    blog = (
+        db.query(models.Blog)
+        .filter(models.Blog.id == id)
+        .delete(synchronize_session=False)
+    )
+    return "done"
+
+
 @app.get("/blog")
 def get_all_blog(db: Session = Depends(get_db)):
     blogs = db.query(models.Blog).all()
     return blogs
-
-
-@app.get("/blog/{id}")
-def show_id(id, db: Session = Depends(get_db)):
-    blog = db.query(models.Blog).filter(models.Blog.id == id).first()
-    return blog
