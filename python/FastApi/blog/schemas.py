@@ -6,10 +6,6 @@ class Blog(BaseModel):
     body: str
 
 
-class ShowBlog(BaseModel):
-    title: str
-
-
 class User(BaseModel):
     name: str
     email: str
@@ -19,3 +15,9 @@ class User(BaseModel):
 class ShowUser(BaseModel):
     name: str
     email: str
+
+
+class ShowBlog(BaseModel):
+    title: str
+    body: str
+    creator: ShowUser
