@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends, status, Response, HTTPException
-from . import models, schemas
+from . import models, schemas, hashing
 from .database import engine, SessionLocal
 from sqlalchemy.orm import Session
 from typing import List
@@ -65,3 +65,15 @@ def update(id, request: schemas.Blog, db: Session = Depends(get_db)):
 def get_all_blog(db: Session = Depends(get_db)):
     blogs = db.query(models.Blog).all()
     return blogs
+
+
+@app.post("/user", response_model=schemas.ShowUser)
+def create_user(request: schemas.User, db: Session = Depends(get_db)):
+    hashed_password = hashing.Hash.bcrypt(request.password)
+    new_user = models.User(
+        name=request.name, email=request.email, password=hashed_password
+    )
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
