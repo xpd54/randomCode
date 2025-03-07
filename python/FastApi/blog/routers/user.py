@@ -3,10 +3,10 @@ from .. import schemas, database, models, hashing
 from sqlalchemy.orm import Session
 from typing import List
 
-router = APIRouter()
+router = APIRouter(tags=["User"], prefix="/user")
 
 
-@router.post("/user", response_model=schemas.ShowUser, tags=["user"])
+@router.post("/", response_model=schemas.ShowUser)
 def create_user(request: schemas.User, db: Session = Depends(database.get_db)):
     hashed_password = hashing.Hash.bcrypt(request.password)
     new_user = models.User(
@@ -19,12 +19,12 @@ def create_user(request: schemas.User, db: Session = Depends(database.get_db)):
 
 
 @router.get(
-    "/user/{id}",
+    "/{id}",
     status_code=status.HTTP_200_OK,
     response_model=schemas.ShowUser,
-    tags=["user"],
 )
 def get_user(id: int, db: Session = Depends(database.get_db)):
     user = db.query(models.User).filter(models.User.id == id).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+    return user
