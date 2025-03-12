@@ -20,6 +20,8 @@
     "test:e2e": "jest --config ./apps/mainapp/test/jest-e2e.json"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.13.0",
+    "@grpc/proto-loader": "^0.7.13",
     "@nestjs/core": "^11.0.11",
     "@nestjs/mapped-types": "*",
     "@nestjs/microservices": "^11.0.11",
@@ -28,6 +30,7 @@
     "postgres": "^3.4.5",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
+    "ts-proto": "^2.6.1",
     "typeorm": "^0.3.21"
   },
   "devDependencies": {
@@ -70,7 +73,11 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1"
+    }
   }
 }
