@@ -24,7 +24,7 @@ export class UsersController implements UserServiceController {
   }
 
   findOneUser(findOneUserDto: FindOneUserDto) {
-    return this.usersService.findOne(id);
+    return this.usersService.findOne(findOneUserDto.id);
   }
 
   updateUser(updateUserDto: UpdateUserDto) {
