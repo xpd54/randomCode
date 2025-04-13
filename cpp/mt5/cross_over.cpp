@@ -18,9 +18,13 @@ int sevenDays = 7;
 int fourteenDays = 14;
 
 // define so trader can use it from input window
-input double LotSize = 1;      // Lot size for trading
-input double TakeProfit = 100; // Take profit in points
-input double StopLoss = 100;   // Stop loss in points
+input double LotSize = 1; // Lot size for trading
+
+// Take Profit and StopLoss here are in points not in exact value.
+// so if _Point is defined 0.01, Stoploss in this case would be 100. (StopLoss *
+// _Point))
+input double TakeProfit = 10000; // Take profit in points
+input double StopLoss = 10000;   // Stop loss in points
 CTrade trade;
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
@@ -53,9 +57,11 @@ void OnDeinit(const int reason) {
 //| Expert tick function                                             |
 //+------------------------------------------------------------------+
 void OnTick() {
+  // int drawMA7 = MA7Handle;
+  // int drawMA14 = MA14Handle;
   //---
-  // getting moving average on current bar for last 7 and 14 days.
-  // copy buffer will retrun -1 for error on copy
+  //  getting moving average on current bar for last 7 and 14 days.
+  //  copy buffer will retrun -1 for error on copy
   int ma7Error = CopyBuffer(MA7Handle, 0, 0, 2, movingAverage7Buffer);
   int ma14Error = CopyBuffer(MA14Handle, 0, 0, 2, movingAverage14Buffer);
   if (ma7Error < 0 || ma14Error < 0) {
@@ -158,8 +164,8 @@ void openAPositionToSell(double currentPrice) {
   // Get the minimum stop level
   long minStopLevel = SymbolInfoInteger(Symbol(), SYMBOL_TRADE_STOPS_LEVEL);
 
-  double sl = currentPrice - StopLoss * _Point;   // Stop loss price
-  double tp = currentPrice + TakeProfit * _Point; // Take profit price
+  double sl = currentPrice + StopLoss * _Point;   // Stop loss price
+  double tp = currentPrice - TakeProfit * _Point; // Take profit price
 
   // Ensure SL is above bid and TP is below bid
   if (sl <= currentPrice) {
