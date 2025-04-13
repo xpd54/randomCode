@@ -123,34 +123,34 @@ bool checkIfOpenPositionForType(int positionType) {
   return false; // No open position of the specified type found
 }
 
-void openAPositionToBuy(double currentPrice) {
+void openAPositionToBuy(double askPrice) {
   // Get the minimum stop level
   long minStopLevel = SymbolInfoInteger(Symbol(), SYMBOL_TRADE_STOPS_LEVEL);
 
-  double sl = currentPrice - StopLoss * _Point;   // Stop loss price
-  double tp = currentPrice + TakeProfit * _Point; // Take profit price
+  double sl = askPrice - StopLoss * _Point;   // Stop loss price
+  double tp = askPrice + TakeProfit * _Point; // Take profit price
 
   // Ensure SL is below ask and TP is above ask
-  if (sl >= currentPrice) {
+  if (sl >= askPrice) {
     Print("stop Loss should be below ask price");
     return;
   }
 
-  if (tp <= currentPrice) {
+  if (tp <= askPrice) {
     Print("take profit should be above ask price");
     return;
   }
 
   // Check validity against minimum stop level
-  if ((currentPrice - sl) < minStopLevel * _Point) {
+  if ((askPrice - sl) < minStopLevel * _Point) {
     Print("Invalid Stop Loss");
     return;
-  } else if ((tp - currentPrice) < minStopLevel * _Point) {
+  } else if ((tp - askPrice) < minStopLevel * _Point) {
     Print("Invalid Take Profit");
     return;
   }
 
-  bool result = trade.Buy(LotSize, _Symbol, currentPrice, sl, tp, "Buy Order");
+  bool result = trade.Buy(LotSize, _Symbol, askPrice, sl, tp, "Buy Order");
   if (!result) {
     Print("Error while opening a Buy position", GetLastError());
   } else {
@@ -160,34 +160,33 @@ void openAPositionToBuy(double currentPrice) {
   }
 }
 
-void openAPositionToSell(double currentPrice) {
+void openAPositionToSell(double bidPrice) {
   // Get the minimum stop level
   long minStopLevel = SymbolInfoInteger(Symbol(), SYMBOL_TRADE_STOPS_LEVEL);
 
-  double sl = currentPrice + StopLoss * _Point;   // Stop loss price
-  double tp = currentPrice - TakeProfit * _Point; // Take profit price
+  double sl = bidPrice + StopLoss * _Point;   // Stop loss price
+  double tp = bidPrice - TakeProfit * _Point; // Take profit price
 
   // Ensure SL is above bid and TP is below bid
-  if (sl <= currentPrice) {
+  if (sl <= bidPrice) {
     Print("Invalid Stop Loss: Must be above bid price");
     return;
   }
-  if (tp >= currentPrice) {
+  if (tp >= bidPrice) {
     Print("Invalid Take Profit: Must be below bid price");
     return;
   }
 
   // Check validity against minimum stop level
-  if ((sl - currentPrice) < minStopLevel * _Point) {
+  if ((sl - bidPrice) < minStopLevel * _Point) {
     Print("Invalid Stop Loss");
     return;
-  } else if ((currentPrice - tp) < minStopLevel * _Point) {
+  } else if ((bidPrice - tp) < minStopLevel * _Point) {
     Print("Invalid Take Profit");
     return;
   }
 
-  bool result =
-      trade.Sell(LotSize, _Symbol, currentPrice, sl, tp, "Sell Order");
+  bool result = trade.Sell(LotSize, _Symbol, bidPrice, sl, tp, "Sell Order");
   if (!result) {
     Print("Error while opening a Sell position", GetLastError());
   } else {
